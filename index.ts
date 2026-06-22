@@ -3,6 +3,7 @@ import {
   type BlockAction,
 } from "@slack/bolt";
 import {
+  BANNED_USER_IDS,
   CHANNEL_ID,
   GROUP_ID,
   LOG_CHANNEL_ID,
@@ -10,6 +11,7 @@ import {
   WATCHED_USERGROUP_IDS,
 } from "./constants";
 
+const bannedUserIds = new Set<string>(BANNED_USER_IDS);
 const watchedChannelIds = new Set<string>(WATCHED_CHANNEL_IDS);
 const watchedUsergroupIds = new Set<string>(WATCHED_USERGROUP_IDS);
 
@@ -104,6 +106,14 @@ app.event("member_joined_channel", async ({ event }) => {
     channel: event.channel,
     user: event.user,
   });
+
+  if (bannedUserIds.has(event.user)) {
+    await app.client.conversations.kick({
+      channel: event.channel,
+      user: event.user,
+    });
+    return;
+  }
 
   if (event.channel != CHANNEL_ID) return;
 
