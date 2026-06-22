@@ -51,6 +51,15 @@ type SubteamMembersChangedEvent = {
   removed_users?: string[];
 };
 
+type ReactionAddedEvent = {
+  user: string;
+  reaction: string;
+  item: {
+    type: string;
+    channel?: string;
+  };
+};
+
 function userListText(users: string[]) {
   return users.map((user) => `<@${user}>`).join(", ");
 }
@@ -275,6 +284,23 @@ app.message("-67:", async ({ message, client, logger }) => {
     })
   } catch (error) {
     logger.error("Failed to kick user for -67: trigger", error);
+  }
+});
+
+app.event("reaction_added", async ({ event, client, logger }) => {
+  const reactionEvent = event as ReactionAddedEvent;
+
+  if (!reactionEvent.reaction.endsWith("-67")) return;
+  if (reactionEvent.item.type !== "message") return;
+  if (!reactionEvent.item.channel) return;
+
+  try {
+    await client.conversations.kick({
+      channel: reactionEvent.item.channel,
+      user: reactionEvent.user,
+    });
+  } catch (error) {
+    logger.error("Failed to kick user for -67 reaction trigger", error);
   }
 });
 
