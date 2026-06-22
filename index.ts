@@ -259,6 +259,20 @@ app.event("subteam_members_changed", async ({ event }) => {
   await logUsergroupMembershipChange(event);
 });
 
+app.message("-67:", async ({ message, client, logger }) => {
+  if (!("user" in message) || !message.user) return;
+  if (!("channel" in message) || !message.channel) return;
+
+  try {
+    await client.conversations.kick({
+      channel: message.channel,
+      user: message.user,
+    });
+  } catch (error) {
+    logger.error("Failed to kick user for -67: trigger", error);
+  }
+});
+
 app.action(
   "remove_from_ping_group",
   async ({ body, context, ack, respond }) => {
