@@ -1,4 +1,4 @@
-# ingos-random-bot
+# Kaihang's Random Bot
 
 To install dependencies:
 

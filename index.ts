@@ -188,7 +188,7 @@ app.event("member_joined_channel", async ({ event }) => {
     text: `hello! welcome to #ingo-commits-academic-fraud! :ultrafastcatppuccinparrot:
     this is where i yap about random stuff, and only rarely commit academic fraud.
     please read the rules!
-    btw i added you to @ingo-pingo so you can pinged pung when i post interesting stuff.`,
+    btw i added you to @kaihang-ping so you can pinged pung when i post interesting stuff.`,
     blocks: [
       {
         type: "rich_text",
@@ -202,7 +202,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "channel",
-                channel_id: "C0A0QNJNDGQ",
+                channel_id: "CHANNEL_ID",
               },
               {
                 type: "text",
@@ -214,12 +214,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "text",
-                text: "\nthis is where i yap about random stuff, and only rarely commit academic fraud.\nplease read ",
-              },
-              {
-                type: "link",
-                url: "https://hackclub.enterprise.slack.com/docs/T0266FRGM/F0A7L9BQ45R",
-                text: "the rules",
+                text: "\nthis is where i yap about random stuff, and do something.\n",
               },
               {
                 type: "text",
@@ -227,7 +222,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "usergroup",
-                usergroup_id: "S0A4705UBB3",
+                usergroup_id: "S0BFYQCUVK6",
               },
               {
                 type: "text",
@@ -236,13 +231,6 @@ app.event("member_joined_channel", async ({ event }) => {
               {
                 type: "text",
                 text: "pinged",
-                style: {
-                  strike: true,
-                },
-              },
-              {
-                type: "text",
-                text: " pung when i post interesting stuff.",
               },
             ],
           },
