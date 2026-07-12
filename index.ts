@@ -119,7 +119,7 @@ app.event("member_joined_channel", async ({ event }) => {
 
   await app.client.chat.postMessage({
     channel: event.channel,
-    text: `everyone welcome <@${event.user}> to #ingo-commits-academic-fraud! :ultrafastcatppuccinparrot:`,
+    text: `everyone welcome <@${event.user}> to #kaihang-does-something! :ultrafastcatppuccinparrot:`,
     blocks: [
       {
         type: "rich_text",
@@ -141,7 +141,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "channel",
-                channel_id: "C0A0QNJNDGQ",
+                channel_id: "C0B4W8S1N3Z",
               },
               {
                 type: "text",
