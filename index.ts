@@ -1,7 +1,9 @@
+// index.ts
 import {
   App,
   type BlockAction,
 } from "@slack/bolt";
+
 import {
   BANNED_USER_IDS,
   CHANNEL_ID,
