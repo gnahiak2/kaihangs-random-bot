@@ -268,42 +268,6 @@ app.event("subteam_members_changed", async ({ event }) => {
   await logUsergroupMembershipChange(event);
 });
 
-app.message("-67:", async ({ message, client, logger }) => {
-  if (!("user" in message) || !message.user) return;
-  if (!("channel" in message) || !message.channel) return;
-
-  try {
-    await client.conversations.kick({
-      channel: message.channel,
-      user: message.user,
-    });
-    await client.reactions.add({
-      channel: message.channel,
-      timestamp: message.ts,
-      name: "ban"
-    })
-  } catch (error) {
-    logger.error("Failed to kick user for -67: trigger", error);
-  }
-});
-
-app.event("reaction_added", async ({ event, client, logger }) => {
-  const reactionEvent = event as ReactionAddedEvent;
-
-  if (!reactionEvent.reaction.endsWith("-67")) return;
-  if (reactionEvent.item.type !== "message") return;
-  if (!reactionEvent.item.channel) return;
-
-  try {
-    await client.conversations.kick({
-      channel: reactionEvent.item.channel,
-      user: reactionEvent.user,
-    });
-  } catch (error) {
-    logger.error("Failed to kick user for -67 reaction trigger", error);
-  }
-});
-
 app.action(
   "remove_from_ping_group",
   async ({ body, context, ack, respond }) => {
