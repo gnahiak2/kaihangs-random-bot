@@ -122,7 +122,7 @@ app.event("member_joined_channel", async ({ event }) => {
 
   await app.client.chat.postMessage({
     channel: event.channel,
-    text: `everyone welcome <@${event.user}> to #kaihang-does-something! :singaporeparrot:`,
+    text: `Welcome <@${event.user}> to #kaihang-does-something! OI @gnahiak2 GET HERE NOW :singaporeparrot:`,
     blocks: [
       {
         type: "rich_text",
@@ -254,7 +254,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "usergroup",
-                usergroup_id: "S0BFYQCUVK6",
+                usergroup_id: "GROUP_ID",
               },
               {
                 type: "text",
