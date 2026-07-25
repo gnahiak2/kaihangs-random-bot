@@ -8,7 +8,15 @@ This is a custom made bot for my personal slack channel.
 - Logs whenever someone leaves a channel in the CHANNEL_ID list from the channel specified by LOG_CHANNEL_ID
 - Automatically kicks users in the BANNED_CHANNEL_ID list from the channel specified by CHANNEL_ID
 - Posts a public welcome message when a user joins the channel specified by CHANNEL_ID
-  - Adds a button to the welcome message that posts 20 
+- A button to the welcome message that posts 20 :singaporeparrot: emojis when clicked
+- Another button to the welcome message that posts 20 :hehheh: emojis when clicked
+- ANOTHER button to the welcome message that posts 20 :rahh: emojis when clicked
+- Automatically add new members of the channel to the slack use group specified by USER_GROUP_ID
+- Lets users opt outta pings with a button
+- Logs additions and removals from the user group
+- Uses rich text formatting (mentions, channel links, user group mentions, and emojis).
+- Supports both Socket mode and HTTP mode.
+
 ### Here's how to run it!
 
 1. Clone the repo
