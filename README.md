@@ -2,6 +2,10 @@
 
 This is a custom made bot for my personal slack channel.
 
+# Images
+<img width="1637" height="1024" alt="image" src="https://github.com/user-attachments/assets/a4b296c3-12f6-40e3-a771-ff911f15e8b6" />
+
+
 ## Features
 
 - Logs whenever someone joins a channel in the CHANNEL_ID list into the channel specified by LOG_CHANNEL_ID
