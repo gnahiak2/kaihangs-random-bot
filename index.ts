@@ -3,6 +3,7 @@ import {
   App,
   type BlockAction,
 } from "@slack/bolt";
+import "dotenv/config";
 
 import {
   BANNED_USER_IDS,
