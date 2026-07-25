@@ -15,7 +15,7 @@ This is a custom made bot for my personal slack channel.
 - Another button to the welcome message that posts 20 :hehheh: emojis when clicked
 - ANOTHER button to the welcome message that posts 20 :rahh: emojis when clicked
 - Automatically add new members of the channel to the slack use group specified by USER_GROUP_ID
-- Lets users opt outta pings with a button when they first join the group
+- Lets users opt outta pings with a button when they first join the channel
 - Logs additions and removals from the user group
 - Uses rich text formatting (mentions, channel links, user group mentions, and emojis).
 - Supports Socket mode
