@@ -121,7 +121,7 @@ app.event("member_joined_channel", async ({ event }) => {
 
   await app.client.chat.postMessage({
     channel: event.channel,
-    text: `everyone welcome <@${event.user}> to #kaihang-does-something! :ultrafastcatppuccinparrot:`,
+    text: `everyone welcome <@${event.user}> to #kaihang-does-something! :singaporeparrot:`,
     blocks: [
       {
         type: "rich_text",
@@ -151,7 +151,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "emoji",
-                name: "ultrafastcatppuccinparrot",
+                name: "singaporeparrot",
               },
             ],
           },
@@ -164,11 +164,41 @@ app.event("member_joined_channel", async ({ event }) => {
             type: "button",
             text: {
               type: "plain_text",
-              text: ":ultrafastcatppuccinparrot:",
+              text: ":singaporeparrot:",
               emoji: true,
             },
-            value: "ultrafastcatppuccinparrot",
-            action_id: "ultrafastcatppuccinparrot",
+            value: "singaporeparrot",
+            action_id: "singaporeparrot",
+          },
+        ],
+      },
+      {
+        type: "actions",
+        elements: [
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: ":rahh:",
+              emoji: true,
+            },
+            value: "rahh",
+            action_id: "rahh",
+          },
+        ],
+      },
+      {
+        type: "actions",
+        elements: [
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: ":hehheh:",
+              emoji: true,
+            },
+            value: "hehheh",
+            action_id: "hehheh",
           },
         ],
       },
@@ -187,10 +217,9 @@ app.event("member_joined_channel", async ({ event }) => {
   await app.client.chat.postEphemeral({
     channel: event.channel,
     user: event.user,
-    text: `hello! welcome to #ingo-commits-academic-fraud! :ultrafastcatppuccinparrot:
-    this is where i yap about random stuff, and only rarely commit academic fraud.
-    please read the rules!
-    btw i added you to @kaihang-ping so you can pinged pung when i post interesting stuff.`,
+    text: `hello! welcome to #kaihang-does-something! :singaporeparrot:
+    this is where i yap about random stuff, my life and do something.
+    btw i added you to @kaihang-ping ping group so you can get pung when i post interesting stuff.`,
     blocks: [
       {
         type: "rich_text",
@@ -212,7 +241,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "emoji",
-                name: "ultrafastcatppuccinparrot",
+                name: ":rahh:",
               },
               {
                 type: "text",
@@ -228,11 +257,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "text",
-                text: " so you can ",
-              },
-              {
-                type: "text",
-                text: "pinged",
+                text: " so you can get pung when i post interesting stuff.",
               },
             ],
           },
@@ -291,7 +316,7 @@ app.action(
 );
 
 app.action(
-  "ultrafastcatppuccinparrot",
+  "singaporeparrot",
   async ({ body, context, ack, respond, payload }) => {
     await ack();
 
@@ -303,7 +328,7 @@ app.action(
       response_type: "in_channel",
       thread_ts: message?.ts,
       text:
-        ":ultrafastcatppuccinparrot:".repeat(20) +
+        ":singaporeparrot:".repeat(20) +
         `\nSent by <@${context.userId}>`,
       blocks: [
         {
@@ -313,7 +338,85 @@ app.action(
               type: "rich_text_section",
               elements: Array(20).fill({
                 type: "emoji",
-                name: "ultrafastcatppuccinparrot",
+                name: "singaporeparrot",
+              }),
+            },
+            {
+              type: "rich_text_section",
+              elements: [
+                { type: "text", text: "Sent by " },
+                { type: "user", user_id: context.userId },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+  },
+);
+app.action(
+  "rahh",
+  async ({ body, context, ack, respond, payload }) => {
+    await ack();
+
+    const message = (body as BlockAction).message;
+
+    await respond({
+      replace_original: false,
+      delete_original: false,
+      response_type: "in_channel",
+      thread_ts: message?.ts,
+      text:
+        ":rahh:".repeat(20) +
+        `\nSent by <@${context.userId}>`,
+      blocks: [
+        {
+          type: "rich_text",
+          elements: [
+            {
+              type: "rich_text_section",
+              elements: Array(20).fill({
+                type: "emoji",
+                name: "rahh",
+              }),
+            },
+            {
+              type: "rich_text_section",
+              elements: [
+                { type: "text", text: "Sent by " },
+                { type: "user", user_id: context.userId },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+  },
+);
+app.action(
+  "hehheh",
+  async ({ body, context, ack, respond, payload }) => {
+    await ack();
+
+    const message = (body as BlockAction).message;
+
+    await respond({
+      replace_original: false,
+      delete_original: false,
+      response_type: "in_channel",
+      thread_ts: message?.ts,
+      text:
+        ":hehheh:".repeat(20) +
+        `\nSent by <@${context.userId}>`,
+      blocks: [
+        {
+          type: "rich_text",
+          elements: [
+            {
+              type: "rich_text_section",
+              elements: Array(20).fill({
+                type: "emoji",
+                name: "hehheh",
               }),
             },
             {
