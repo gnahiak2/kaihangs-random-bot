@@ -1,4 +1,3 @@
-// index.ts
 import {
   App,
   type BlockAction,
@@ -9,93 +8,10 @@ import {
   BANNED_USER_IDS,
   CHANNEL_ID,
   GROUP_ID,
-  LOG_CHANNEL_ID,
-  WATCHED_CHANNEL_IDS,
-  WATCHED_USERGROUP_IDS,
 } from "./constants";
 
 const bannedUserIds = new Set<string>(BANNED_USER_IDS);
-const watchedChannelIds = new Set<string>(WATCHED_CHANNEL_IDS);
-const watchedUsergroupIds = new Set<string>(WATCHED_USERGROUP_IDS);
 
-async function logChannelMembershipChange({
-  action,
-  channel,
-  user,
-}: {
-  action: "joined" | "left";
-  channel: string;
-  user: string;
-}) {
-  if (!watchedChannelIds.has(channel)) return;
-
-  await app.client.chat.postMessage({
-    channel: LOG_CHANNEL_ID,
-    text: `<@${user}> ${action} <#${channel}>`,
-    blocks: [
-      {
-        type: "rich_text",
-        elements: [
-          {
-            type: "rich_text_section",
-            elements: [
-              { type: "user", user_id: user },
-              { type: "text", text: ` ${action} ` },
-              { type: "channel", channel_id: channel },
-            ],
-          },
-        ],
-      },
-    ],
-  });
-}
-
-type SubteamMembersChangedEvent = {
-  subteam_id: string;
-  added_users?: string[];
-  removed_users?: string[];
-};
-
-type ReactionAddedEvent = {
-  user: string;
-  reaction: string;
-  item: {
-    type: string;
-    channel?: string;
-  };
-};
-
-function userListText(users: string[]) {
-  return users.map((user) => `<@${user}>`).join(", ");
-}
-
-async function logUsergroupMembershipChange(
-  event: SubteamMembersChangedEvent,
-) {
-  if (!watchedUsergroupIds.has(event.subteam_id)) return;
-
-  const addedUsers = event.added_users ?? [];
-  const removedUsers = event.removed_users ?? [];
-  const changes = [
-    addedUsers.length
-      ? `Added: ${userListText(addedUsers)}`
-      : undefined,
-    removedUsers.length
-      ? `Removed: ${userListText(removedUsers)}`
-      : undefined,
-  ].filter(Boolean);
-
-  if (!changes.length) return;
-
-  await app.client.chat.postMessage({
-    channel: LOG_CHANNEL_ID,
-    text: `Usergroup <!subteam^${event.subteam_id}> changed. ${changes.join(
-      " ",
-    )}`,
-  });
-}
-
-// Initializes your app with your Slack app and bot token
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   socketMode: process.env.SLACK_SOCKET_MODE === "true",
@@ -104,12 +20,6 @@ const app = new App({
 });
 
 app.event("member_joined_channel", async ({ event }) => {
-  await logChannelMembershipChange({
-    action: "joined",
-    channel: event.channel,
-    user: event.user,
-  });
-
   if (bannedUserIds.has(event.user)) {
     await app.client.conversations.kick({
       channel: event.channel,
@@ -144,7 +54,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "channel",
-                channel_id: "C0B4W8S1N3Z",
+                channel_id: CHANNEL_ID,
               },
               {
                 type: "text",
@@ -219,8 +129,8 @@ app.event("member_joined_channel", async ({ event }) => {
     channel: event.channel,
     user: event.user,
     text: `hello! welcome to #kaihang-does-something! :singaporeparrot:
-    this is where i yap about random stuff, my life and do something.
-    btw i added you to @kaihang-ping ping group so you can get pung when i post interesting stuff.`,
+this is where i yap about random stuff, my life and do something.
+btw i added you to @kaihang-ping ping group so you can get pung when i post interesting stuff.`,
     blocks: [
       {
         type: "rich_text",
@@ -234,7 +144,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "channel",
-                channel_id: "CHANNEL_ID",
+                channel_id: CHANNEL_ID,
               },
               {
                 type: "text",
@@ -242,7 +152,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "emoji",
-                name: ":rahh:",
+                name: "rahh",
               },
               {
                 type: "text",
@@ -254,7 +164,7 @@ app.event("member_joined_channel", async ({ event }) => {
               },
               {
                 type: "usergroup",
-                usergroup_id: "GROUP_ID",
+                usergroup_id: GROUP_ID,
               },
               {
                 type: "text",
@@ -272,6 +182,7 @@ app.event("member_joined_channel", async ({ event }) => {
             text: {
               type: "plain_text",
               text: "opt out of pings",
+              emoji: true,
             },
             value: "remove_from_ping_group",
             action_id: "remove_from_ping_group",
@@ -282,21 +193,9 @@ app.event("member_joined_channel", async ({ event }) => {
   });
 });
 
-app.event("member_left_channel", async ({ event }) => {
-  await logChannelMembershipChange({
-    action: "left",
-    channel: event.channel,
-    user: event.user,
-  });
-});
-
-app.event("subteam_members_changed", async ({ event }) => {
-  await logUsergroupMembershipChange(event);
-});
-
 app.action(
   "remove_from_ping_group",
-  async ({ body, context, ack, respond }) => {
+  async ({ body, ack, respond }) => {
     await ack();
 
     const existingMembers = await app.client.usergroups.users.list({
@@ -318,7 +217,7 @@ app.action(
 
 app.action(
   "singaporeparrot",
-  async ({ body, context, ack, respond, payload }) => {
+  async ({ body, context, ack, respond }) => {
     await ack();
 
     const message = (body as BlockAction).message;
@@ -355,9 +254,10 @@ app.action(
     });
   },
 );
+
 app.action(
   "rahh",
-  async ({ body, context, ack, respond, payload }) => {
+  async ({ body, context, ack, respond }) => {
     await ack();
 
     const message = (body as BlockAction).message;
@@ -394,9 +294,10 @@ app.action(
     });
   },
 );
+
 app.action(
   "hehheh",
-  async ({ body, context, ack, respond, payload }) => {
+  async ({ body, context, ack, respond }) => {
     await ack();
 
     const message = (body as BlockAction).message;
@@ -435,7 +336,6 @@ app.action(
 );
 
 (async () => {
-  // Start your app
   await app.start();
 
   app.logger.info("⚡️ Bolt app is running!");
