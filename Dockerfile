@@ -1,15 +1,11 @@
-# use the official Bun image
-# see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun:1 AS base
-WORKDIR /usr/src/app
+FROM docker.io/oven/bun:1
+
+WORKDIR /app
+
+COPY package.json bun.lock ./
+
+RUN bun install --frozen-lockfile
 
 COPY . .
 
-ENV NODE_ENV=production
-
-RUN bun install
-
-# run the app
-USER bun
-EXPOSE 3000
-ENTRYPOINT [ "bun", "run", "index.ts" ]
+CMD ["bun", "run", "index.ts"]
