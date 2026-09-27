@@ -86,36 +86,6 @@ app.event("member_joined_channel", async ({ event, logger }) => {
             },
           ],
         },
-        {
-          type: "actions",
-          elements: [
-            {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: ":rahh:",
-                emoji: true,
-              },
-              value: "rahh",
-              action_id: "rahh",
-            },
-          ],
-        },
-        {
-          type: "actions",
-          elements: [
-            {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: ":hehheh:",
-                emoji: true,
-              },
-              value: "hehheh",
-              action_id: "hehheh",
-            },
-          ],
-        },
       ],
     });
 
@@ -197,6 +167,63 @@ btw i added you to @kaihang-ping ping group so you can get pung when i post inte
   } catch (error) {
     logger.error(
       `Failed to handle member_joined_channel for ${event.user}:`,
+      error,
+    );
+  }
+});
+
+app.event("member_left_channel", async ({ event, logger }) => {
+  if (event.channel !== CHANNEL_ID) return;
+
+  try {
+    await app.client.chat.postMessage({
+      channel: event.channel,
+      text: `everyone say bye to <@${event.user}> :sob:`,
+      blocks: [
+        {
+          type: "rich_text",
+          elements: [
+            {
+              type: "rich_text_section",
+              elements: [
+                {
+                  type: "text",
+                  text: "everyone say bye to ",
+                },
+                {
+                  type: "user",
+                  user_id: event.user,
+                },
+                {
+                  type: "text",
+                  text: " ",
+                },
+                {
+                  type: "emoji",
+                  name: "sob",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    const existingMembers = await app.client.usergroups.users.list({
+      usergroup: GROUP_ID,
+    });
+
+    const members = existingMembers.users || [];
+
+    if (members.includes(event.user)) {
+      await app.client.usergroups.users.update({
+        usergroup: GROUP_ID,
+        users: members.filter((id) => id !== event.user).join(","),
+      });
+    }
+  } catch (error) {
+    logger.error(
+      `Failed to handle member_left_channel for ${event.user}:`,
       error,
     );
   }
