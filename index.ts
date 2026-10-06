@@ -105,7 +105,7 @@ app.event("member_joined_channel", async ({ event, logger }) => {
     await app.client.chat.postEphemeral({
       channel: event.channel,
       user: event.user,
-      text: `hello! welcome to #kaihang-does-something! :singaporeparrot:
+      text: `hello! welcome to #kaihangs-shitdump! :singaporeparrot:
 this is where i yap about random stuff, my life and do something.
 btw i added you to @kaihang-ping ping group so you can get pung when i post interesting stuff.`,
       blocks: [
@@ -178,7 +178,7 @@ app.event("member_left_channel", async ({ event, logger }) => {
   try {
     await app.client.chat.postMessage({
       channel: event.channel,
-      text: `everyone say bye to <@${event.user}> :sob:`,
+      text: `everyone say bye to <@${event.user}> :sob: :noooovanish: :wahhhh:`,
       blocks: [
         {
           type: "rich_text",
@@ -411,8 +411,34 @@ app.action(
   },
 );
 
+const GREETINGS = ["mrrp", "meow"];
+
+const MIN_COOLDOWN_MS = 1000;
+const MAX_COOLDOWN_MS = 10 * 60 * 1000;
+
+async function startRandomGreetings() {
+  while (true) {
+    const delay =
+      MIN_COOLDOWN_MS +
+      Math.random() * (MAX_COOLDOWN_MS - MIN_COOLDOWN_MS);
+
+    await new Promise((resolve) => setTimeout(resolve, delay));
+
+    try {
+      const text =
+        GREETINGS[Math.floor(Math.random() * GREETINGS.length)] ?? "meow";
+
+      await app.client.chat.postMessage({ channel: CHANNEL_ID, text });
+    } catch (error) {
+      app.logger.error("Failed to send random greeting:", error);
+    }
+  }
+}
+
 (async () => {
   await app.start();
 
   app.logger.info("⚡️ Bolt app is running!");
+
+  startRandomGreetings();
 })();
