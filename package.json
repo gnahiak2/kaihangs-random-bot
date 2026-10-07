@@ -1,5 +1,5 @@
 {
-  "name": "kaihangs-random-bot",
+  "name": "nibble",
   "module": "index.ts",
   "type": "module",
   "private": true,

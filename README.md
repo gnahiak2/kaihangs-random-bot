@@ -1,4 +1,4 @@
-# Kaihang's Random Bot
+# Nibble
 
 This is a custom made bot for my personal slack channel.
 
@@ -24,7 +24,7 @@ This is a custom made bot for my personal slack channel.
 
 1. Clone the repo and cd into the directory
 ```bash
-git clone https://github.com/kaihangs/kaihangs-random-bot.git && cd kaihangs-random-bot
+git clone https://github.com/gnahiak2/nibble.git && cd nibble
 ```
 2. Install dependencies:
 ```bash
