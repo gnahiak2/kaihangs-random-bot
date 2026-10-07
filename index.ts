@@ -178,7 +178,7 @@ app.event("member_left_channel", async ({ event, logger }) => {
   try {
     await app.client.chat.postMessage({
       channel: event.channel,
-      text: `everyone say bye to <@${event.user}> :sob: :noooovanish: :wahhhh:`,
+      text: `everyone say bye to <@${event.user}> :sob: :noooovanish: :wahhhh: `,
       blocks: [
         {
           type: "rich_text",
