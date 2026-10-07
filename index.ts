@@ -61,7 +61,15 @@ app.event("member_joined_channel", async ({ event, logger }) => {
                 },
                 {
                   type: "text",
-                  text: "! ",
+                  text: "! OI",
+                },
+                {
+                  type: "user",
+                  user_id: USER_ID,
+                },
+                {
+                  type: "text",
+                  text: "GET OVER ERE!",
                 },
                 {
                   type: "emoji",
@@ -107,7 +115,7 @@ app.event("member_joined_channel", async ({ event, logger }) => {
       user: event.user,
       text: `hello! welcome to #kaihangs-shitdump! :singaporeparrot:
 this is where i yap about random stuff, my life and do something.
-btw i added you to @kaihang-ping ping group so you can get pung when i post interesting stuff.`,
+btw i added you to @kaihang-ping ping group so you can get pung when i post anything.`,
       blocks: [
         {
           type: "rich_text",
@@ -201,6 +209,14 @@ app.event("member_left_channel", async ({ event, logger }) => {
                 {
                   type: "emoji",
                   name: "sob",
+                },
+                {
+                  type: "emoji",
+                  name: "noooovanish",
+                },
+                {
+                  type: "emoji",
+                  name: "wahhhh",
                 },
               ],
             },
