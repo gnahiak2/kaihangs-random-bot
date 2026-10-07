@@ -43,9 +43,8 @@ This project was created using `bun init` in bun v1.3.1. [Bun](https://bun.com) 
  - Used ChatGPT to compare Ingo's index.ts and my index.ts
 
  ### What i changed
- - Removed when you say 6 7 or react and send any 6 7 emojis you get kicked
- - Added more emojis instead of just :ultrafastcatppuccinparrot:
- - Emojis added to replace :ultrafastcatppuccinparrot: : :rahh: :singaporeparrot: and :hehheh:
+ - Removed when you say 6 7 or react and send any 6 7 emojis you get kickedx
+ - Emoji added to replace :ultrafastcatppuccinparrot: : :singaporeparrot:
  - Edited all of em welcome messages to use the new emojis
  - Logs have no change cuz there is no point
  - Removed Rules link
