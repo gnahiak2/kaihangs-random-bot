@@ -427,30 +427,6 @@ app.action(
   },
 );
 
-const GREETINGS = ["mrrp", "meow"];
-
-const MIN_COOLDOWN_MS = 1000;
-const MAX_COOLDOWN_MS = 10 * 60 * 1000;
-
-async function startRandomGreetings() {
-  while (true) {
-    const delay =
-      MIN_COOLDOWN_MS +
-      Math.random() * (MAX_COOLDOWN_MS - MIN_COOLDOWN_MS);
-
-    await new Promise((resolve) => setTimeout(resolve, delay));
-
-    try {
-      const text =
-        GREETINGS[Math.floor(Math.random() * GREETINGS.length)] ?? "meow";
-
-      await app.client.chat.postMessage({ channel: CHANNEL_ID, text });
-    } catch (error) {
-      app.logger.error("Failed to send random greeting:", error);
-    }
-  }
-}
-
 (async () => {
   await app.start();
 
