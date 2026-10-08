@@ -9,6 +9,7 @@ import {
   BANNED_USER_IDS,
   CHANNEL_ID,
   GROUP_ID,
+  USER_ID,
 } from "./constants";
 
 const bannedUserIds = new Set<string>(BANNED_USER_IDS);
