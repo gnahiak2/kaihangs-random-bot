@@ -11,9 +11,7 @@ This is a custom made bot for my personal slack channel.
 - Logs whenever someone joins a channel in the CHANNEL_ID list into the channel specified by LOG_CHANNEL_ID
 - Logs whenever someone leaves a channel in the CHANNEL_ID list from the channel specified by LOG_CHANNEL_ID
 - Posts a public welcome message when a user joins the channel specified by CHANNEL_ID
-- A button to the welcome message that posts 20 :singaporeparrot: emojis when clicked
-- Another button to the welcome message that posts 20 :hehheh: emojis when clicked
-- ANOTHER button to the welcome message that posts 20 :rahh: emojis when clicked
+- A button to the welcome message that posts 20 :singaporeparrot: emojis when clickedd
 - Automatically add new members of the channel to the slack use group specified by USER_GROUP_ID
 - Lets users opt outta pings with a button when they first join the channel
 - Logs additions and removals from the user group
