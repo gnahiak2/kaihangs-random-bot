@@ -1,0 +1,46 @@
+display_information:
+  name: Nibble
+  description: "Kaihang's slack bot for #kaihangs-shitdump!"
+  background_color: "#000000"
+  long_description: "Kaihang's slack bot for #kaihangs-shitdump!\r
+
+    Name contributed by @Koy\r
+
+    Canonically a Catenby\r
+
+    meowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeowwmeoww"
+features:
+  bot_user:
+    display_name: Nibble
+    always_online: true
+oauth_config:
+  scopes:
+    bot:
+      - chat:write
+      - channels:history
+      - channels:read
+      - groups:history
+      - groups:read
+      - mpim:read
+      - reactions:read
+      - usergroups:read
+      - usergroups:write
+      - reactions:write
+      - channels:manage
+  pkce_enabled: false
+settings:
+  event_subscriptions:
+    bot_events:
+      - member_joined_channel
+      - member_left_channel
+      - message.channels
+      - message.groups
+      - reaction_added
+      - subteam_members_changed
+  interactivity:
+    is_enabled: true
+  org_deploy_enabled: false
+  socket_mode_enabled: true
+  token_rotation_enabled: false
+  app_level_token_rotation_enabled: false
+  is_mcp_enabled: false
