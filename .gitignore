@@ -1,37 +1,39 @@
-# python
+# general things to ignore
+build/
+dist/
+docs/_sources/
+docs/.doctrees
+.eggs/
+*.egg-info/
+*.egg
+*.py[cod]
 __pycache__/
-.ruff_cache/
+*.so
+*~
 
-# output
-out
-dist
-*.tgz
+# virtualenv
+env*/
+venv/
+.venv*
+.env*
 
-# code coverage
-coverage
-*.lcov
+# codecov / coverage
+.coverage
+cov_*
+coverage.xml
 
-# logs
-logs
-_.log
-report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
-
-# dotenv environment variable files
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-
-# caches
-.eslintcache
+# due to using tox and pytest
+.tox
 .cache
-*.tsbuildinfo
+.pytest_cache/
+.python-version
+pip
+.mypy_cache/
 
-# IDEs
-.idea
-.zed
-.vscode
-
-# Finder (MacOS) folder config
+# misc
+tmp.txt
 .DS_Store
+logs/
+*.db
+.pytype/
+.idea/
