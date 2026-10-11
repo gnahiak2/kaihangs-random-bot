@@ -1,0 +1,7 @@
+services:
+  web:
+    container_name: nibble-slack-bot
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
