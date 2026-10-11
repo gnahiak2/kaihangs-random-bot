@@ -136,7 +136,7 @@ def handle_left_member(event, say, logger):
     logger.info(f'oooo theres a event -> {event}')
     user_id = event['user']
 
-    say(f'Bye <@{user_id}>! It was nice having you in <#{CHANNEL_ID}!')
+    say(f'Bye <@{user_id}>! It was nice having you in <#{CHANNEL_ID}>!')
 
 if __name__ == "__main__":
     handler = SocketModeHandler(app, slack_app_token)
