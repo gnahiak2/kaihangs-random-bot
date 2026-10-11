@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Shell(bunx tsc --noEmit)"
-    ],
-    "deny": [],
-    "defaultMode": "default"
-  }
-}
