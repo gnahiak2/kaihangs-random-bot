@@ -1,2 +1,4 @@
-certifi==2026.7.22
-wheel==0.48.0
+slack-bolt==1.30.0
+pytest==9.1.1
+ruff==0.16.9
+slack-cli-hooks==0.3.0
